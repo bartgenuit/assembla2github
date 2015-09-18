@@ -71,7 +71,7 @@ purgeData = ->
           else
             throw new Promise.CancellationError
     .each (collection) ->
-      return db.collection(collection.s.name).remove({})
+      if collection.s.name.substring(0, 6) isnt "system" then return collection.drop()
     .then ->
       console.log('data purged')
     .catch Promise.CancellationError, (e) ->
