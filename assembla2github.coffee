@@ -206,7 +206,7 @@ joinValues = (ticket) ->
     .find({'id': ticket.ticket_status_id}).toArrayAsync()
     .then (data) ->
       if data.length > 0
-        return data[0].title
+        return data[0].name
 
   # Append Tags
   tags = db.collection('ticket_tags')
