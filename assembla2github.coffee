@@ -465,11 +465,13 @@ exportToGithub = ->
               body: issue.body
               assignee: issue.assignee
               labels: issue.labels || []
-              state: issue.state
             )
             .spread (body, headers) ->
-              # Save Assembla Id and Github Id mapping to MongoDb
               githubId = parseInt(body.number)
+              # Update state information (open, closed)
+              githubIssue = github.issue(argv.repo.path, githubId)
+              githubIssue.updateAsync(state: issue.state)
+              # Save Assembla Id and Github Id mapping to MongoDb
               db.collection('assembla2github').updateAsync({'assembla_ticket_number': issue.number},
                 {
                   'assembla_ticket_number': issue.number
