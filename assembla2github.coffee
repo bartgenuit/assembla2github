@@ -313,7 +313,7 @@ updateLinks = (github, repo, bar) ->
         newBody = issue.github_issue_body
 
         # Retrieve all Assembla ticket numbers from body and find matching Github issue number
-        re = /(?:\[GitHub\]\((\d+)\))/g
+        re = /(?:\[GitHub\]\(AS-(\d+)\))/g
         while (matches = re.exec(issue.github_issue_body)) isnt null
           assemblaId = parseInt(matches[1])
           mapping = db.collection('assembla2github')
@@ -329,8 +329,8 @@ updateLinks = (github, repo, bar) ->
             githubId = relatedIssue.github_issue_number
 
             # Update Github issue number in body
-            re = ///\[GitHub\]\(#{assemblaId}\)///g
-            newBody = newBody.replace(re, "[GitHub](##{githubId})")
+            re = ///\[GitHub\]\(AS-#{assemblaId}\)///g
+            newBody = newBody.replace(re, "[GitHub](../issues/#{githubId})")
         .then ->
           # Remove remaining github link placeholders (probably referring to closed ticket)
           re = /(?:\[GitHub\]\((\d+)\))/g
