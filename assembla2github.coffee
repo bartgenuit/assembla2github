@@ -509,6 +509,7 @@ exportToGithub = ->
               bar.tick()
             .catch((e) ->
               if e.message is 'Validation Failed'
+                console.log('Errors:')
                 console.log(e.body.errors)
               else
                 throw e
