@@ -434,7 +434,7 @@ Export data to GitHub
   })
 ###
 exportToGithub = ->
-  bar = new ProgressBar("Exporting data to github #{argv.repo.path} [:bar] [:percent] [:eta seconds left]", {
+  bar = new ProgressBar("Exporting data to github [:bar] [:percent] [:eta seconds left]", {
     'complete': '='
     'incomplete': ' '
     'stream': process.stdout
