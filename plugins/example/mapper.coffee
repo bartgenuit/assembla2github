@@ -103,9 +103,9 @@ module.exports.transform = (data) ->
   if _.keys(data.relatedTickets).length
     _.each(data.relatedTickets, (tickets, key) ->
       key = _.capitalize(key)
-      data.body += "\n#{key}:" if _.keys(tickets).length
+      data.body += "\n\n>#{key}:" if _.keys(tickets).length
       _.each(tickets, (ticket) ->
-        data.body += "\n- #{ticket.summary} ([Assembla](#{baseUrl}/#{ticket.number}), [GitHub](#{ticket.number}))"
+        data.body += "\n- #{ticket.summary} ([Assembla](#{baseUrl}/#{ticket.number}), [GitHub](AS-#{ticket.number}))"
       )
     )
 
