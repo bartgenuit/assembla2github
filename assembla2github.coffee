@@ -34,6 +34,7 @@ collections = {}
 fieldsMeta = {}
 
 # Require transform plugin if needed
+plugin = {transform:""};
 plugin = require(argv.transform) if argv.transform
 
 ###
